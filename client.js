@@ -45,7 +45,7 @@ client.send = function() {
 };
 
 function getTextMessage(message) {
-
+	var messageData = {};
 	var params = {
 	  text: message.body,
 	  from: 'fr',
@@ -62,17 +62,17 @@ function getTextMessage(message) {
 	    if (err) console.log('error:' + err.message);
 		// console.log(data);
 		// console.log(message);
-		var messageData = {
+		messageData = {
 			orignalMessage: message.body,
 			translatedMessage: data,
 			messageTime: message.dateSent,
 			sender: message.from
 		}; 
-	    
-	    console.log('messageData', messageData);
-	    return messageData;
 	  });
 	});
+
+	console.log('messageData', messageData);
+	return messageData;
 }
 
 module.exports = client;
