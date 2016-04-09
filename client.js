@@ -10,7 +10,7 @@ var client = new twilio.RestClient(process.env.TWILIO_ACCOUNT_SID, process.env.T
 
 var i = 0;
 
-client.getMessage = function() {
+client.getMessage = function(callback) {
 	client.messages.list({ 
 		from: process.env.FROM, 
 		to: process.env.TO,  
@@ -19,13 +19,13 @@ client.getMessage = function() {
 
 		getTextMessage(message, function(msg) {
 			console.log('msg', msg);
-			return msg;
+			callback(msg || {});
 		});
 	  }
 	);
 };
 
-client.getMessageList = function() {
+client.getMessageList = function(callback) {
 	var translated = [];
 
 	client.messages.list({ 
@@ -44,7 +44,7 @@ client.getMessageList = function() {
 				count++;
 			});
 			if (count >= length) {
-				return translated;
+				callback(translated || []);
 			}
 		});
 	});
