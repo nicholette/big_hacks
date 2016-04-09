@@ -18,6 +18,7 @@ client.getMessage = function() {
 		var message = data.messages[0];
 
 		getTextMessage(message, function(msg) {
+			console.log('msg', msg);
 			return msg;
 		});
 	  }
@@ -38,6 +39,7 @@ client.getMessageList = function() {
 		messages.forEach(function(msg) {
 			console.log(msg);
 			getTextMessage(msg, function(msg2) {
+				console.log('msg', msg);
 				translated.push(msg2);
 				count++;
 			});
