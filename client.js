@@ -77,8 +77,12 @@ function getTextMessage(message, callback) {
 			  else
 			  	numStar = 5;
 
-			  input.originalMessage = input.originalMessage.match(/.*?(?=\*)/)[0];
-			  input.translatedMessage = input.translatedMessage.match(/.*?(?=\*)/)[0];
+			  if (input.originalMessage.match(/.*?(?=\*)/) !== null) {
+			  	input.originalMessage = input.originalMessage.match(/.*?(?=\*)/)[0];
+			  }
+			  if (input.translatedMessage.match(/.*?(?=\*)/) !== null) {
+			  	input.translatedMessage = input.translatedMessage.match(/.*?(?=\*)/)[0];
+			  }
 			  input.numStar = numStar;
 	 	 } else {
 		 	input.numStar = numStar;
