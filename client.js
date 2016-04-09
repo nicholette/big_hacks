@@ -33,7 +33,6 @@ client.getMessageList = function(callback) {
 		to: process.env.TO,  
 	}, function(err, data) { 
 		var messages = data.messages;
-		var length = data.messages.length;
 		var count = 0;
 
 		messages.forEach(function(msg) {
@@ -43,7 +42,7 @@ client.getMessageList = function(callback) {
 				translated.push(msg2);
 				count++;
 			});
-			if (count >= length) {
+			if (count >= 10) { // only show last 10
 				callback(translated || []);
 			}
 		});
