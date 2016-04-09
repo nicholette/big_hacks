@@ -1,15 +1,20 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
+var cors = require('cors');
 var app = express();
+var config = require('./config');
+var http = require('http');
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.use(cors());
 app.use(bodyParser.json());
 
-app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
- });
 
 app.get('/', function(req, res) {
   res.type('text/plain'); // set content-type
@@ -22,7 +27,7 @@ app.get('/message', function(req, res) {
   client.getMessage(function(msg) {
   	res.setHeader('Content-Type', 'application/json');
   	res.writeHead(200);
-  	res.write(JSON.stringify(msg));
+  	res.end(JSON.stringify(msg));
   });
 });
 
@@ -30,7 +35,7 @@ app.get('/messagelist', function(req,res) {
   client.getMessageList(function(msgList) {
   	res.setHeader('Content-Type', 'application/json');
   	res.writeHead(200);
-  	res.write(JSON.stringify(msgList));
+  	res.end(JSON.stringify(msgList));
   });
 });
 

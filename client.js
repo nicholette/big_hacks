@@ -3,17 +3,19 @@
 // Load the twilio module
 var twilio = require('twilio');
 var MsTranslator = require('./mstranslator');
+var config = require('./config');
+
  
 // Create a new REST API client to make authenticated requests against the
 // twilio back end
-var client = new twilio.RestClient(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+var client = new twilio.RestClient(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);
 
 var i = 0;
 
 client.getMessage = function(callback) {
 	client.messages.list({ 
-		from: process.env.FROM, 
-		to: process.env.TO,  
+		from: config.FROM, 
+		to: config.TO,  
 	}, function(err, data) { 
 		var message = data.messages[0];
 
@@ -29,8 +31,8 @@ client.getMessageList = function(callback) {
 	var translated = [];
 
 	client.messages.list({ 
-		from: process.env.FROM, 
-		to: process.env.TO,  
+		from: config.FROM, 
+		to: config.TO,  
 	}, function(err, data) { 
 		var messages = data.messages;
 		var count = 0;
@@ -41,16 +43,12 @@ client.getMessageList = function(callback) {
 				console.log('msg', msg);
 				translated.push(msg2);
 				count++;
-				if (count >= 3) { // only show last 3
+				if (count === 5) { // only show last 3
 					callback(translated || []);
 				}
 			});
 		});
 	});
-};
-
-client.send = function() {
-    client.sendTo(process.env.TEST_RCVP_NUMBER, 'Testing123');
 };
 
 function getTextMessage(message, callback) {
