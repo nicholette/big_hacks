@@ -18,6 +18,12 @@ app.get('/message', function(req, res) {
   res.writeHead(200);
 });
 
+app.get('/messagelist', function(req,res) {
+  client.getMessageList();
+
+  res.writeHead(200);
+});
+
 app.get('/send', function(req, res) {
   client.send();
   res.writeHead(200);

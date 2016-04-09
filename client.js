@@ -17,9 +17,26 @@ client.getMessage = function() {
 	}, function(err, data) { 
 		var message = data.messages[0];
 
-		getTextMessage(message);
+		return getTextMessage(message);
 	  }
 	);
+};
+
+client.getMessageList = function() {
+	var translated = [];
+
+	client.messages.list({ 
+		from: process.env.FROM, 
+		to: process.env.TO,  
+	}, function(err, data) { 
+		var messages = data.messages;
+
+		messages.forEach(function(msg) {
+			translated.push(getTextMessage(msg));
+		});
+	});
+
+	return translated;
 };
 
 client.send = function() {
@@ -42,15 +59,16 @@ function getTextMessage(message) {
 	client.initialize_token(function(){
 	  client.translate(params, function(err, data) {
 	    if (err) console.log('error:' + err.message);
-		console.log(data);
-		console.log(message);
-		var messageData = {
-			orignalMessage: message.body,
-			translatedMessage: data,
-			messageTime: message.dateSent,
-			sender: message.from
-		}; 
-	    // process.exit()
+		// console.log(data);
+		// console.log(message);
+		// var messageData = {
+		// 	orignalMessage: message.body,
+		// 	translatedMessage: data,
+		// 	messageTime: message.dateSent,
+		// 	sender: message.from
+		// }; 
+	    
+	    return message;
 	  });
 	});
 }
