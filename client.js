@@ -32,6 +32,7 @@ client.getMessageList = function() {
 		var messages = data.messages;
 
 		messages.forEach(function(msg) {
+			console.log(msg);
 			translated.push(getTextMessage(msg));
 		});
 	});
@@ -61,14 +62,15 @@ function getTextMessage(message) {
 	    if (err) console.log('error:' + err.message);
 		// console.log(data);
 		// console.log(message);
-		// var messageData = {
-		// 	orignalMessage: message.body,
-		// 	translatedMessage: data,
-		// 	messageTime: message.dateSent,
-		// 	sender: message.from
-		// }; 
+		var messageData = {
+			orignalMessage: message.body,
+			translatedMessage: data,
+			messageTime: message.dateSent,
+			sender: message.from
+		}; 
 	    
-	    return message;
+	    console.log('messageData', messageData);
+	    return messageData;
 	  });
 	});
 }
