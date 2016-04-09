@@ -54,31 +54,37 @@ client.getMessageList = function(callback) {
 function getTextMessage(message, callback) {
 	var params = {
 	  text: message.body,
-	  from: 'fr',
-	  to: 'en'
 	};
 
-	var client = new MsTranslator({
-	  client_id: "Bighack_SG",
-	  client_secret: "Bighack_Singapore_92"
-	});
+var client = new MsTranslator({
+      client_id: "Bighack_SG",
+      client_secret: "Bighack_Singapore_92"
+    });
 
-	client.initialize_token(function(){
-	  client.translate(params, function(err, data) {
-	    if (err) console.log('error:' + err.message);
-		// console.log(data);
-		// console.log(message);
-		messageData = {
-			orignalMessage: message.body,
-			translatedMessage: data,
-			messageTime: message.dateSent,
-			sender: message.from
-		};
+    client.initialize_token(function(){
+    client.detect (params, function(err, data) {
+      var params = {
+          text: message.body,
+          from: data,
+          to: 'en'
+        };
+        client.translate(params, function(err, data) {
+          if (err) console.log('error:' + err.message);
+          // console.log(data);
+          // console.log(message);
+          messageData = {
+              orignalMessage: message.body,
+              translatedMessage: data,
+              messageTime: message.dateSent,
+              sender: message.from
+          };
 
-		callback(messageData);
-	  });
-	});
+          callback(messageData);
+        });
+      });
+  });
 }
+
 
 module.exports = client;
 
