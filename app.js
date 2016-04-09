@@ -21,6 +21,7 @@ app.get('/message', function(req, res) {
 });
 
 app.get('/messagelist', function(req,res) {
+  req.setTimeout(0);
   res.setHeader('Content-Type', 'application/json');
   res.writeHead(200);
   client.getMessageList(function(msgList) {
