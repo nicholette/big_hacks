@@ -15,12 +15,14 @@ var client = require('./client');
 app.get('/message', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
   res.writeHead(200);
+  console.log('message', client.getMessage());
   res.write(JSON.stringify(client.getMessage()));
 });
 
 app.get('/messagelist', function(req,res) {
   res.setHeader('Content-Type', 'application/json');
   res.writeHead(200);
+  console.log('messagelist', client.getMessageList());
   res.write(JSON.stringify(client.getMessageList()));
 });
 
