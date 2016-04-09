@@ -8,7 +8,7 @@ var app = require('../app');
 var debug = require('debug')('big_hacks:server');
 var http = require('http');
 var twilio = require('twilio');
-var MsTranslator = require('./mstranslator');
+var MsTranslator = require('../mstranslator');
 
 /**
  * Get port from environment and store in Express.
