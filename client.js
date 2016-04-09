@@ -41,10 +41,10 @@ client.getMessageList = function(callback) {
 				console.log('msg', msg);
 				translated.push(msg2);
 				count++;
+				if (count >= 3) { // only show last 3
+					callback(translated || []);
+				}
 			});
-			if (count >= 3) { // only show last 3
-				callback(translated || []);
-			}
 		});
 	});
 };
