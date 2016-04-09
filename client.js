@@ -17,7 +17,9 @@ client.getMessage = function() {
 	}, function(err, data) { 
 		var message = data.messages[0];
 
-		return getTextMessage(message);
+		getTextMessage(message, function(msg) {
+			return msg;
+		});
 	  }
 	);
 };
@@ -30,22 +32,27 @@ client.getMessageList = function() {
 		to: process.env.TO,  
 	}, function(err, data) { 
 		var messages = data.messages;
+		var length = data.messages.length;
+		var count = 0;
 
 		messages.forEach(function(msg) {
 			console.log(msg);
-			translated.push(getTextMessage(msg));
+			getTextMessage(msg, function(msg2) {
+				translated.push(msg2);
+				count++;
+			});
+			if (count >= length) {
+				return translated;
+			}
 		});
 	});
-
-	return translated;
 };
 
 client.send = function() {
     client.sendTo(process.env.TEST_RCVP_NUMBER, 'Testing123');
 };
 
-function getTextMessage(message) {
-	var messageData = {};
+function getTextMessage(message, callback) {
 	var params = {
 	  text: message.body,
 	  from: 'fr',
@@ -67,12 +74,11 @@ function getTextMessage(message) {
 			translatedMessage: data,
 			messageTime: message.dateSent,
 			sender: message.from
-		}; 
+		};
+
+		callback(messageData);
 	  });
 	});
-
-	console.log('messageData', messageData);
-	return messageData;
 }
 
 module.exports = client;
