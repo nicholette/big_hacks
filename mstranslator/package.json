@@ -1,0 +1,40 @@
+{
+  "author": "Kenan Shifflett <kenan.shifflett@gmail.com>",
+  "contributors": [
+    "Peng Zuo <> (https://github.com/nan1nan1)",
+    "Juga Paazmaya <paazmaya@yahoo.com> (https://github.com/paazmaya)",
+    "Ariel Jakobovits <> (https://github.com/arieljake)",
+    "sorinsarca <> (https://github.com/sorinsarca)",
+    "Andrii Dieiev <> (https://github.com/IllusionMH)"
+  ],
+  "name": "mstranslator",
+  "description": "Microsoft Translator API module for node.js",
+  "version": "2.0.6",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nanek/mstranslator.git"
+  },
+  "main": "mstranslator.js",
+  "scripts": {
+    "doc": "documentation mstranslator.js -f md > API.md",
+    "test": "mocha test/api.test.js"
+  },
+  "engines": {
+    "node": ">=0.4.7"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "3.4.0",
+    "mocha": "~2.3.0",
+    "underscore": "1.8.3"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/nanek/mstranslator/blob/master/LICENSE-MIT"
+    }
+  ],
+  "files": [
+    "mstranslator.js"
+  ]
+}

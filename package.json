@@ -15,7 +15,6 @@
     "kerberos": "0.0.17",
     "mongoose": "^4.3.4",
     "morgan": "~1.6.1",
-    "mstranslator": "^2.0.6",
     "querystring": "^0.2.0",
     "request": "^2.67.0",
     "serve-favicon": "~2.3.0",
