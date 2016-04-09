@@ -42,7 +42,7 @@ client.getMessageList = function(callback) {
 				translated.push(msg2);
 				count++;
 			});
-			if (count >= 10) { // only show last 10
+			if (count >= 4) { // only show last 10
 				callback(translated || []);
 			}
 		});
