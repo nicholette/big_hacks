@@ -19,17 +19,17 @@ app.get('/', function(req, res) {
 var client = require('./client');
 
 app.get('/message', function(req, res) {
-  res.setHeader('Content-Type', 'application/json');
-  res.writeHead(200);
   client.getMessage(function(msg) {
+  	res.setHeader('Content-Type', 'application/json');
+  	res.writeHead(200);
   	res.write(JSON.stringify(msg));
   });
 });
 
 app.get('/messagelist', function(req,res) {
-  res.setHeader('Content-Type', 'application/json');
-  res.writeHead(200);
   client.getMessageList(function(msgList) {
+  	res.setHeader('Content-Type', 'application/json');
+  	res.writeHead(200);
   	res.write(JSON.stringify(msgList));
   });
 });
