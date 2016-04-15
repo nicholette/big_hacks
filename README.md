@@ -18,3 +18,5 @@ To use Kiva Nuevo Backend, please prepare a *config.js* file containing these co
   * Your MS Translator Client ID
 - **MS_CLIENT_SECRET**
   * Your MS Translator Client secret
+
+To see Kiva Nuevo's frontend, please visit https://github.com/nekonekonik/big_hacks_ui
