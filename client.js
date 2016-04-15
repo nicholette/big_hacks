@@ -97,8 +97,8 @@ function getTextMessage(message, callback) {
 	};
 
 	var client = new MsTranslator({
-      client_id: "Bighack_SG",
-      client_secret: "Bighack_Singapore_92"
+      client_id: config.MS_CLIENT_ID,
+      client_secret: config.MS_CLIENT_SECRET
     });
 
     client.initialize_token(function(){
